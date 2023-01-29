@@ -100,6 +100,7 @@ a {
   text-decoration: none;
 }
 
+
 .about-page {
   text-align: left;
   max-width: 800px;
@@ -109,9 +110,19 @@ a {
   margin-top: 50px;
 }
 
-.hero-logo {
-  width: 400px;
-  height: 150px;
+.hero-steps {
+  margin: 0 auto;
+  padding: 100px;
+}
+
+
+.hero-logo, .about-logo {
+  width: 300px;
+  height:90px;
+}
+
+.hero-content {
+  margin-top: 125px;
 }
 
 .container {
@@ -147,7 +158,9 @@ a {
 }
 
 .rank-bar {
-  padding: 10px;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
 }
 
 .rank-bar:hover {
@@ -156,7 +169,7 @@ a {
 }
 
 .selected {
-  background: #eee;
+  background: #eee !important;
 }
 
 .box-overlay {
@@ -181,13 +194,6 @@ a {
 .ant-menu-horizontal {
   border-bottom: none;
   line-height: 40px !important;
-}
-
-.about-logo {
-  padding-top: 10px;
-  height: 100px;
-  width: 280px;
-  margin-bottom: 20px;
 }
 
 .header-logo {

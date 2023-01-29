@@ -21,20 +21,24 @@ export default function MinerWizard({ selectedMiners }) {
                 items={MINER_STEPS}
             />
             {step === 0 && <div>
-                <h1>Top storage providers</h1>
                 <a target="_blank" className='normal-link' href="/about">How ranking works (i)</a>
                 <br />
                 {selectedMiners?.slice(0, 10).map((m, i) => {
                     return (
-                        <RankBar selected={miner?.address === m.address} key={i} miner={m} onClick={() => setMiner(m)} />
+                        <RankBar selected={miner?.address === m.address} key={i} miner={m} onSelect={() => {
+                            console.log('selected', m)
+                            setMiner(m)
+                        }} />
                     )
                 })}
             </div>}
             {step === 1 && <div>
                 <Card title="Miner details">
+                    <h3>Provider: {miner.address}</h3>
                     <p><a target="_blank" className='normal-link' href={detailUrl}>View recent deals</a></p>
-                    <h3>{miner.address}</h3>
                     <h4>Score: {miner.rank}</h4>
+                    <hr/>
+                    <br/>
                     <p>Region: {miner.region}</p>
                     <p>Storage Deals: {miner.storageDeals.total}</p>
                     <p>Verified Deals: {miner.storageDeals.verified}</p>
@@ -53,7 +57,11 @@ export default function MinerWizard({ selectedMiners }) {
             </div>}
             <br />
             {step !== 0 && <Button type="secondary" onClick={() => setStep(step - 1)}>Back</Button>}&nbsp;
-            {step !== lastStep && <Button type="primary" disabled={!miner} onClick={() => setStep(step + 1)}>Next</Button>}
+            {step !== lastStep && <span>
+                <Button type="primary" disabled={!miner && step === 0} onClick={() => setStep(step + 1)}>Next</Button>
+                {!miner && step === 0 && <span>&nbsp;Select a miner to continue</span>}
+                </span>
+                }
 
         </div>
     )

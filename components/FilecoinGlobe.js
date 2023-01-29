@@ -45,12 +45,16 @@ function FilecoinGlobe({ }) {
     }, [])
 
     useEffect(() => {
+        const maxPrice = parseFloat(filters.maxPrice)
+        const targetSize = parseFloat(filters.size)
         const filtered = miners?.filter(x => LOCATION_MAP[x.isoCode]).filter((miner) => {
+            const price = parseFloat(miner.price)
+
             if (filters.region && filters.region !== miner.region) {
                 return false;
-            } else if (filters.size && (filters.size > miner.maxPieceSize || filters.size < miner.minPieceSize)) {
+            } else if (!isNaN(targetSize) && (targetSize > parseFloat(miner.maxPieceSize) || targetSize < parseFloat(miner.minPieceSize))) {
                 return false;
-            } else if (miners.price && filters.maxPrice && filters.maxPrice < miner.price) {
+            } else if (!isNaN(price) && !isNaN(maxPrice) && maxPrice < price) {
                 return false;
             }
             return true;
@@ -70,22 +74,20 @@ function FilecoinGlobe({ }) {
             return
         }
 
-        const pts = Object.keys(REGION_MAP).map((region, i) => {
-            const minersInRegion = filtered?.filter((miner) => miner.region === region)
-            // const totalPower = minersInRegion.reduce((acc, miner) => acc + parseInt(miner.rawPower), 0)
-            // const avgPrice = minersInRegion.reduce((acc, miner) => acc + parseInt(miner.price), 0) / minersInRegion.length
-            // const avgScore = minersInRegion.reduce((acc, miner) => acc + computeRankScore(miner), 0) / minersInRegion.length
-            const text = `${region} - ${minersInRegion.length} miners`
+        const minerCount = filtered.length
+
+        let pts = Object.keys(REGION_MAP).map((region, i) => {
+            const minersInRegion = filtered?.filter((miner) => miner.region === region).length || 0
+            const text = `${region} - ${minersInRegion} miners`
+            const percent = minersInRegion / minerCount
             return {
                 id: i,
                 color: REGION_MAP[region].color,
+                count: minersInRegion,
                 region,
                 label: text,
-                dotRadius: 1,
-                labelSize: 1,
-                // value: totalPower,
-                // avgPrice,
-                // avgScore,
+                dotRadius: percent * 5 + 1,
+                labelSize: percent * 2 + 1,
                 lat: REGION_MAP[region].lat,
                 lng: REGION_MAP[region].lng
             }
@@ -132,7 +134,7 @@ function FilecoinGlobe({ }) {
                     <div>
                         <p><b>{filteredMiners.length}</b> results.</p>
                         <br/>
-                        <Button type="primary" onClick={() => setSelectedMiners(filteredMiners)}>View top 10 miners</Button>
+                        {filteredMiners.length > 0 && <Button type="primary" onClick={() => setSelectedMiners(filteredMiners)}>View top {Math.min(filteredMiners.length, 10)} miners</Button>}
                     </div>
                     }
             </div>
@@ -149,12 +151,14 @@ function FilecoinGlobe({ }) {
                 labelLat={d => d.lat}
                 labelLng={d => d.lng}
                 labelText={d => d.label}
-                labelSize={d => d.labeSize}
+                labelSize={d => d.labelSize}
                 labelDotRadius={d => d.dotRadius}
                 labelColor={() => 'rgba(255, 165, 0, 0.75)'}
                 onLabelClick={(obj) => {
                     const region = obj.region
-                    setSelectedMiners(miners.filter((miner) => miner.region === region))
+                    const selected = miners?.filter((miner) => miner.region === region) || []
+                    selected?.sort((a, b) => b.rank - a.rank)
+                    setSelectedMiners(selected)
                 }}
                 enablePointerInteraction={true}
             />
@@ -163,7 +167,7 @@ function FilecoinGlobe({ }) {
             width={1000}
                 size='large'
                 visible={!!selectedMiners}
-                title="Storage Providers"
+                title="Top Storage Providers"
                 cancelButtonProps={{ style: { display: 'none' } }}
                 okButtonProps={{ style: { display: 'none' } }}
                 onOk={() => setSelectedMiners(null)}

@@ -46,6 +46,6 @@ export default function MainLayout({ children }) {
       <Content>
         {children}
       </Content>
-      <Footer style={{ textAlign: 'center' }}><p>{DISCLAIMER}</p><br/><b>{APP_NAME}</b> ©2023. {HACK_DESC}</Footer>
+      <Footer style={{ textAlign: 'center', borderTop: '1px solid lightgrey' }}><p>{DISCLAIMER}</p><br/><b>{APP_NAME}</b> ©2023. {HACK_DESC}</Footer>
     </Layout>)
 }

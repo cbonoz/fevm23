@@ -1,5 +1,5 @@
 export const APP_NAME = 'globe.fil'
-export const APP_DESC = 'Onboard to Filecoin with a few clicks using globe.fil'
+export const APP_DESC = 'Onboard to Filecoin with just a few clicks'
 export const HACK_DESC = 'Built for the FEVM Space Warp hackathon'
 
 export const DISCLAIMER = `
@@ -8,7 +8,7 @@ The data provided by the app '${APP_NAME}' is provided for reference purposes on
 
 export const MINER_STEPS = [
     {
-      title: 'View miners',
+      title: 'View top storage providers',
         description: 'Select a miner to view details',
     },
     {
