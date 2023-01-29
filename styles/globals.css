@@ -172,16 +172,20 @@ a {
   background: #eee !important;
 }
 
+.ant-menu-item {
+  padding-top: 10px;
+}
+
 .box-overlay {
   z-index: 999;
   background: white;
   padding: 20px;
   line-height: 1.5;
-  opacity: 0.75;
+  opacity: 0.7;
   position: absolute;
   top: 0;
   left: 0;
-  width: 300px;
+  width: 325px;
   height: 325px;
   border-radius: 5px;
   margin: 5px;
@@ -196,8 +200,14 @@ a {
   line-height: 40px !important;
 }
 
+.select-miner-heading {
+  justify-content: space-between;
+  display: flex;
+}
+.bold {
+  font-weight: bold;
+}
 .header-logo {
-  padding-top: 10px;
-  height: 50px;
+  height: 40px;
   width: 140px;
 }

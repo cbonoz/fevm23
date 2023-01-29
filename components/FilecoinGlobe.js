@@ -46,17 +46,20 @@ function FilecoinGlobe({ }) {
 
     useEffect(() => {
         const maxPrice = parseFloat(filters.maxPrice)
-        const targetSize = parseFloat(filters.size)
+        const targetSize = parseFloat(filters.size) * Math.pow(10,9)
         const filtered = miners?.filter(x => LOCATION_MAP[x.isoCode]).filter((miner) => {
             const price = parseFloat(miner.price)
-
             if (filters.region && filters.region !== miner.region) {
                 return false;
-            } else if (!isNaN(targetSize) && (targetSize > parseFloat(miner.maxPieceSize) || targetSize < parseFloat(miner.minPieceSize))) {
+            } else if (filters.size && (targetSize > parseFloat(miner.maxPieceSize) || targetSize < parseFloat(miner.minPieceSize))) {
                 return false;
-            } else if (!isNaN(price) && !isNaN(maxPrice) && maxPrice < price) {
+            } else if (filters.maxPrice && maxPrice < price) {
+                return false;
+            } else if (filters.size && !miner.maxPieceSize) {
+                // Filter out miners that don't have a max piece size and the max size is set.
                 return false;
             }
+            console.log('filters', targetSize, miner.maxPieceSize, miner.minPieceSize, maxPrice, price)
             return true;
         }).map(x => {
             return {
@@ -75,6 +78,10 @@ function FilecoinGlobe({ }) {
         }
 
         const minerCount = filtered.length
+        if (!minerCount) {
+            setPoints([])
+            return
+        }
 
         let pts = Object.keys(REGION_MAP).map((region, i) => {
             const minersInRegion = filtered?.filter((miner) => miner.region === region).length || 0
