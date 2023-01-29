@@ -100,6 +100,11 @@ a {
   text-decoration: none;
 }
 
+.hero-logo {
+  width: 400px;
+  height: 150px;
+}
+
 .container {
   text-align: center;
   justify-content: center;
@@ -119,8 +124,30 @@ a {
   }
 }
 
+.normal-link {
+  color: blue;
+}
+
+.normal-link:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
 .ant-layout-content  {
   padding: 0 !important;
+}
+
+.rank-bar {
+  padding: 10px;
+}
+
+.rank-bar:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
+.selected {
+  background: #eee;
 }
 
 .box-overlay {
@@ -133,7 +160,7 @@ a {
   top: 0;
   left: 0;
   width: 300px;
-  height: 275px;
+  height: 325px;
   border-radius: 5px;
   margin: 5px;
 }

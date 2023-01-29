@@ -4,8 +4,9 @@ import { getMiners, getStorageProviders } from '@/util/api';
 import { LOCATION_MAP, REGION_MAP } from '@/util/mappings';
 import dynamic from "next/dynamic";
 import { useWindowSize } from '@/hooks/WindowSize';
-import { Modal, Option, Select, Input } from 'antd';
+import { Modal, Button, Option, Select, Input } from 'antd';
 import { computeRankScore } from '@/util/ranking';
+import MinerWizard from './MinerWizard';
 const Globe = dynamic(() => import('react-globe.gl'), { ssr: false })
 
 const SKY = "https://unpkg.com/three-globe@2.24.13/example/img/night-sky.png"
@@ -19,7 +20,7 @@ const styling = {
 
 // A miner takes this structure: {"id":0,"address":"f02822","status":false,"reachability":"unreachable","tag":{"name":null,"verified":null},"uptimeAverage":0,"price":null,"verifiedPrice":null,"minPieceSize":null,"maxPieceSize":null,"rawPower":"274877906944","qualityAdjPower":"274877906944","isoCode":"CN","region":"Asia","creditScore":null,"score":"11","scores":{"total":"11","uptime":0,"storageDeals":"11","committedSectorsProofs":0},"freeSpace":null,"storageDeals":{"total":7,"noPenalties":6,"successRate":"0.85714285714285714286","averagePrice":"224695000000000","dataStored":"8589934592","slashed":1,"terminated":1,"faultTerminated":0,"recent30days":null},"goldenPath":{"storageDealSuccessRate":false,"retrievalDealSuccessRate":false,"fastRetrieval":null,"verifiedDealNoPrice":false,"faultsBelowThreshold":false},"energy":{"recs":null,"pageUrl":null},"rank":"4427","regionRank":"1538"}
 
-function FilecoinGlobe({ onSelect }) {
+function FilecoinGlobe({ }) {
     const [points, setPoints] = useState([]);
     const [miners, setMiners] = useState();
     const [filteredMiners, setFilteredMiners] = useState();
@@ -44,7 +45,7 @@ function FilecoinGlobe({ onSelect }) {
     }, [])
 
     useEffect(() => {
-        const filtered = miners?.filter((miner) => {
+        const filtered = miners?.filter(x => LOCATION_MAP[x.isoCode]).filter((miner) => {
             if (filters.region && filters.region !== miner.region) {
                 return false;
             } else if (filters.size && (filters.size > miner.maxPieceSize || filters.size < miner.minPieceSize)) {
@@ -52,23 +53,44 @@ function FilecoinGlobe({ onSelect }) {
             } else if (miners.price && filters.maxPrice && filters.maxPrice < miner.price) {
                 return false;
             }
-
             return true;
-        })
-        setFilteredMiners(filtered)
-
-        const pts = filtered?.filter(x => LOCATION_MAP[x.isoCode]).map((miner) => {
-            const rankScore = computeRankScore(miner)
-            const location = LOCATION_MAP[miner.isoCode]
+        }).map(x => {
             return {
-                id: miner.address,
-                name: miner.address,
-                color: 'red',
-                lat: location.Latitude,
-                lng: location.Longitude,
-                value: rankScore,
+                ...x,
+                rank: computeRankScore(x)
             }
         })
+
+        // Sort by rank descending
+        filtered?.sort((a, b) => b.rank - a.rank)
+
+        setFilteredMiners(filtered)
+        if (!filtered) {
+            setPoints([])
+            return
+        }
+
+        const pts = Object.keys(REGION_MAP).map((region, i) => {
+            const minersInRegion = filtered?.filter((miner) => miner.region === region)
+            // const totalPower = minersInRegion.reduce((acc, miner) => acc + parseInt(miner.rawPower), 0)
+            // const avgPrice = minersInRegion.reduce((acc, miner) => acc + parseInt(miner.price), 0) / minersInRegion.length
+            // const avgScore = minersInRegion.reduce((acc, miner) => acc + computeRankScore(miner), 0) / minersInRegion.length
+            const text = `${region} - ${minersInRegion.length} miners`
+            return {
+                id: i,
+                color: REGION_MAP[region].color,
+                region,
+                label: text,
+                dotRadius: 1,
+                labelSize: 1,
+                // value: totalPower,
+                // avgPrice,
+                // avgScore,
+                lat: REGION_MAP[region].lat,
+                lng: REGION_MAP[region].lng
+            }
+        })
+
         if (pts) {
             setPoints(pts)
         }
@@ -92,7 +114,7 @@ function FilecoinGlobe({ onSelect }) {
                     onChange={(e) => setFilters({ ...filters, maxPrice: e.target.value })} />
                 &nbsp;FIL per GB/month.<br/><br/> I am looking for a storage provider in&nbsp;
                 <Select
-                allowClear
+                    allowClear
                     style={{ width: 120 }}
                     value={filters.region}
                     onChange={(value) => setFilters({ ...filters, region: value })}
@@ -104,11 +126,18 @@ function FilecoinGlobe({ onSelect }) {
                                 label: region
                             }
                         })} />
-
                     <br/>
                     <br/>
-                    {points && <p>Showing <b>{points.length}</b> results.</p>}
+                    {filteredMiners && 
+                    <div>
+                        <p><b>{filteredMiners.length}</b> results.</p>
+                        <br/>
+                        <Button type="primary" onClick={() => setSelectedMiners(filteredMiners)}>View top 10 miners</Button>
+                    </div>
+                    }
             </div>
+
+            {/* https://github.com/vasturiano/react-globe.gl#labels-layer */}
             <Globe
                 labelsData={points}
                 width={size.width}
@@ -117,41 +146,30 @@ function FilecoinGlobe({ onSelect }) {
                 globeImageUrl="https://unpkg.com/three-globe/example/img/earth-night.jpg"
                 bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
                 backgroundImageUrl={SKY}
-                hexBinPointWeight="pop"
-                hexAltitude={d => d.sumWeight * 6e-8}
-                hexBinResolution={4}
-                hexTopColor={d => weightColor(d.sumWeight)}
-                hexSideColor={d => weightColor(d.sumWeight)}
-                hexBinMerge={true}
-                enablePointerInteraction={false}
+                labelLat={d => d.lat}
+                labelLng={d => d.lng}
+                labelText={d => d.label}
+                labelSize={d => d.labeSize}
+                labelDotRadius={d => d.dotRadius}
+                labelColor={() => 'rgba(255, 165, 0, 0.75)'}
+                onLabelClick={(obj) => {
+                    const region = obj.region
+                    setSelectedMiners(miners.filter((miner) => miner.region === region))
+                }}
+                enablePointerInteraction={true}
             />
 
             <Modal
-                show={!!selectedMiners}
+            width={1000}
+                size='large'
+                visible={!!selectedMiners}
                 title="Storage Providers"
                 cancelButtonProps={{ style: { display: 'none' } }}
+                okButtonProps={{ style: { display: 'none' } }}
                 onOk={() => setSelectedMiners(null)}
                 onCancel={() => setSelectedMiners(null)}
             >
-                {selectedMiners?.slice(0, 1).map((miner, i) => {
-                    return (
-                        <div key={i}>
-                            <h3>{miner.address}</h3>
-                            <h4>Rank: {miner.rankScore}</h4>
-                            <p>Region: {miner.region}</p>
-                            <p>Storage Deals: {miner.storageDeals.total}</p>
-                            <p>Verified Deals: {miner.storageDeals.verified}</p>
-                            <p>Success Rate: {miner.storageDeals.successRate}</p>
-                            <p>Price: {miner.price}</p>
-                            <p>Verified Price: {miner.verifiedPrice}</p>
-                            <p>Raw Power: {miner.rawPower}</p>
-                            <p>Quality Adj Power: {miner.qualityAdjPower}</p>
-                            <p>Min Piece Size: {miner.minPieceSize}</p>
-                            <p>Max Piece Size: {miner.maxPieceSize}</p>
-                            <p>Free Space: {miner.freeSpace}</p>
-                        </div>
-                    )
-                })}
+                <MinerWizard selectedMiners={selectedMiners} />
             </Modal>
 
         </div>)

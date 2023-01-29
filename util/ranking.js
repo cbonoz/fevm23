@@ -11,13 +11,10 @@ export function computeRankScore(payload) {
     
     let rankScore = 0;
   
-    rankScore += (power / 1000000000000) * 20;
-    rankScore += (size / 100000000000) * 20;
-    rankScore += (successRate / 1) * 20;
+    rankScore += (successRate / 1) * 50;
     if(recent30days) {
-      rankScore += (Math.min(recent30days, 100) / 100) * 20;
+      rankScore += (Math.min(recent30days, 100) / 100) * 50;
     }
-    rankScore += (powerQuality / 1000000000000) * 20;
   
     return rankScore;
   }

@@ -1,3 +1,4 @@
+<br/>
 <p align='center'>
     <img src="./img/logo_trans.png" width=400 />
 </p>
@@ -18,6 +19,8 @@ Create a deal: https://docs.filecoin.io/get-started/store-and-retrieve/store-dat
 
 
 ### Motivation
+
+Project uses the api.filrep.io miner api to retrieve and index the list of active storage providers on the filecoin network. The recent transactions, deal count, storage power, and success rate all go into a composite score to recommend you a miner.
 
 
 
