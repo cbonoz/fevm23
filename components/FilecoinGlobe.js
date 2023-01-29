@@ -59,7 +59,7 @@ function FilecoinGlobe({ }) {
                 // Filter out miners that don't have a max piece size and the max size is set.
                 return false;
             }
-            console.log('filters', targetSize, miner.maxPieceSize, miner.minPieceSize, maxPrice, price)
+            // console.log('filters', targetSize, miner.maxPieceSize, miner.minPieceSize, maxPrice, price)
             return true;
         }).map(x => {
             return {
@@ -171,9 +171,9 @@ function FilecoinGlobe({ }) {
             />
 
             <Modal
-            width={1000}
+                width={1000}
                 size='large'
-                visible={!!selectedMiners}
+                open={!!selectedMiners}
                 title="Top Storage Providers"
                 cancelButtonProps={{ style: { display: 'none' } }}
                 okButtonProps={{ style: { display: 'none' } }}

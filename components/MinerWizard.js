@@ -14,6 +14,8 @@ export default function MinerWizard({ selectedMiners }) {
 
     if (!selectedMiners) { return null }
 
+    const topMiners = selectedMiners?.slice(0, 10)
+
     return (
         <div>
             <Steps
@@ -27,7 +29,7 @@ export default function MinerWizard({ selectedMiners }) {
                     <span></span>
                     <span className='bold'>Reputation rank</span>
                 </div>
-                {selectedMiners?.slice(0, 10).map((m, i) => {
+                {topMiners.map((m, i) => {
                     return (
                         <RankBar selected={miner?.address === m.address} key={i} miner={m} onSelect={() => {
                             console.log('selected', m)
@@ -36,6 +38,7 @@ export default function MinerWizard({ selectedMiners }) {
                         }} />
                     )
                 })}
+                <p>Showing top {topMiners.length} of {selectedMiners.length} providers</p>
             </div>}
             {step === 1 && <div>
                 <Card title={`Miner details: ${miner?.address}`}>
@@ -46,7 +49,6 @@ export default function MinerWizard({ selectedMiners }) {
                     <br />
                     <p>Region: {miner.region}</p>
                     <p>Storage Deals: {miner.storageDeals.total}</p>
-                    <p>Verified Deals: {miner.storageDeals.verified}</p>
                     <p>Success Rate: {miner.storageDeals.successRate}</p>
                     <p>Price: {miner.price}</p>
                     <p>Verified Price: {miner.verifiedPrice}</p>
