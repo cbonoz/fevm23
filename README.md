@@ -7,7 +7,8 @@
 Globe.fil
 ----
 
-<!-- Existing tools -->
+
+Find the perfect storage provider for your needs with globe.fil
 
 Built for the FEVM 2023 Space warp hackathon.
 
@@ -20,20 +21,39 @@ Create a deal: https://docs.filecoin.io/get-started/store-and-retrieve/store-dat
 
 ### Motivation
 
-Project uses the api.filrep.io miner api to retrieve and index the list of active storage providers on the filecoin network. The recent transactions, deal count, storage power, and success rate all go into a composite score to recommend you a miner.
+Filecoin is a decentralized storage network that allows users to store, share, and access data in a secure and decentralized way. It uses a peer-to-peer network of storage providers, called miners, to store and retrieve data. These miners are incentivized through the use of Filecoin tokens, which are used to pay for storage and retrieval services on the network.
+
+If you're looking to onboard to Filecoin and start storing or retrieving data, you can use a tool like globe.fil to make the process quick and easy. Globe.fil is a user-friendly platform that utilizes the api.filrep.io miner API to retrieve and index a list of active storage providers on the Filecoin network.
+
+To use globe.fil, simply set your search criteria, such as storage capacity and location, and then select a region from the globe or search globally. The platform will then recommend a list of storage providers based on a composite score that takes into account factors such as recent transactions, deal count, storage power, and success rate.
+
+From the recommended results, you can select the storage provider that best suits your needs and securely store your data on the Filecoin network. With globe.fil, you can easily access the decentralized storage power of Filecoin with just a few clicks.
+
+Existing explorers may exist but 
 
 
 
 ### How to run
+`yarn dev`
 
 
 ### Screenshots
+
+<img src="">
 
 
 
 ### Future work
 
-* Integrate with online wallets such as metamask.
+1. Integration with other decentralized networks: An app like globe.fil could potentially integrate with other decentralized networks, such as IPFS or Ethereum, to provide a seamless experience for storing and accessing data across multiple platforms.
+
+2. Advanced search and filtering options: Additional search and filtering options could be added to the app, such as the ability to search for specific file types, data retention policies, or pricing models.
+
+3. Real-time monitoring and reporting: The app could include real-time monitoring and reporting features, such as the ability to track storage usage, data transfer speeds, and miner performance.
+
+4.  Automated data replication: The app could include automated data replication features, such as the ability to automatically copy data to multiple storage providers for added redundancy and security.
+
+Support for decentralized applications: The app could potentially provide integration and support for decentralized applications built on top of the Filecoin network, such as decentralized marketplaces, data sharing platforms, or distributed compute networks.
 
 
 <!--

@@ -6,7 +6,7 @@ import logo from '../../img/logo_trans.png'
 
 function About(props) {
   return (
-    <div className='container'>
+    <div className='about-page'>
         <Image
           className='about-logo'
             src={logo}
@@ -14,6 +14,20 @@ function About(props) {
         <br/>
         <h1>About</h1>
         <br/>
+        Filecoin is a decentralized storage network that allows users to store, share, and access data in a secure and decentralized way. It uses a peer-to-peer network of storage providers, called miners, to store and retrieve data. These miners are incentivized through the use of Filecoin tokens, which are used to pay for storage and retrieval services on the network.
+
+If you're looking to onboard to Filecoin and start storing or retrieving data, you can use a tool like globe.fil to make the process quick and easy. Globe.fil is a user-friendly platform that utilizes the api.filrep.io miner API to retrieve and index a list of active storage providers on the Filecoin network.
+
+To use globe.fil, simply set your search criteria, such as storage capacity and location, and then select a region from the globe or search globally. The platform will then recommend a list of storage providers based on a composite score that takes into account factors such as recent transactions, deal count, storage power, and success rate.
+
+From the recommended results, you can select the storage provider that best suits your needs and securely store your data on the Filecoin network. With globe.fil, you can easily access the decentralized storage power of Filecoin with just a few clicks.
+
+
+<br/>
+<br/>
+<p>
+  <a className='normal-link' href="https://github.com/cbonoz/fevm23" target="_blank">Github</a>
+</p>
         {/* TODO: add full description here for the app including motivation */}
     </div>
   )

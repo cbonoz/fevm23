@@ -32,7 +32,7 @@ export default function MinerWizard({ selectedMiners }) {
             </div>}
             {step === 1 && <div>
                 <Card title="Miner details">
-                    <p><a className='normal-link' href={detailUrl}>View recent deals</a></p>
+                    <p><a target="_blank" className='normal-link' href={detailUrl}>View recent deals</a></p>
                     <h3>{miner.address}</h3>
                     <h4>Score: {miner.rank}</h4>
                     <p>Region: {miner.region}</p>

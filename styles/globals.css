@@ -100,6 +100,15 @@ a {
   text-decoration: none;
 }
 
+.about-page {
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.5;
+  min-height: 75vh;
+  margin-top: 50px;
+}
+
 .hero-logo {
   width: 400px;
   height: 150px;
