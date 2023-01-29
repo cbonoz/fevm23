@@ -29,12 +29,12 @@ To use globe.fil, simply set your search criteria, such as storage capacity and 
 
 From the recommended results, you can select the storage provider that best suits your needs and securely store your data on the Filecoin network. With globe.fil, you can easily access the decentralized storage power of Filecoin with just a few clicks.
 
-Existing explorers may exist but 
-
 
 
 ### How to run
 `yarn dev`
+
+The app should now be running on port 3000.
 
 
 ### Screenshots
