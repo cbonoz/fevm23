@@ -8,6 +8,7 @@ const { Header, Content, Footer, Sider } = Layout;
 
 import logo from '../img/logo_trans.png'
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function MainLayout({ children }) {
   const router = useRouter()
@@ -16,17 +17,17 @@ export default function MainLayout({ children }) {
   const menuItems = [
     {
       key: '/',
-      label: <a href="/">
+      label: <Link href="/">
         <Image src={logo} className='header-logo' alt={APP_NAME} />
-      </a>
+      </Link>
     },
     {
       key: '/search',
-      label: <a href="/search">Search</a>
+      label: <Link href="/search">Search</Link>
     },
     {
       key: '/about',
-      label: <a href="/about">About</a>
+      label: <Link href="/about">About</Link>
     },
   ]
 

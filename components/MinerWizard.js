@@ -43,7 +43,7 @@ export default function MinerWizard({ selectedMiners }) {
             {step === 1 && <div>
                 <Card title={`Miner details: ${miner?.address}`}>
                     {/* <h3>Provider: {miner.address}</h3> */}
-                    <p><a target="_blank" className='normal-link' href={detailUrl}>View recent deals</a></p>
+                    <p><a rel="noreferrer" target="_blank" className='normal-link' href={detailUrl}>View recent deals</a></p>
                     <h4>{APP_NAME} rank: {miner.rank}</h4>
                     <hr />
                     <br />

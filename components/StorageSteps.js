@@ -5,7 +5,7 @@ export default function StorageSteps({ miner }) {
         <div className="storage-steps">
             <h1>Storage Steps</h1>
             <p>Follow the instructions below to create a deal with the selected storage provider.<br/>
-            <a className='normal-link' href="https://docs.filecoin.io/get-started/store-and-retrieve/store-data/#create-a-deal" target="_blank">View full instructions</a>
+            <a rel="noreferrer" className='normal-link' href="https://docs.filecoin.io/get-started/store-and-retrieve/store-data/#create-a-deal" target="_blank">View full instructions</a>
             </p>
             <br />
             <pre>

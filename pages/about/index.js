@@ -18,7 +18,7 @@ function About(props) {
       <h3>What is {APP_NAME}?</h3>
       <p>Filecoin is a decentralized storage network that allows users to store, share, and access data in a secure and decentralized way. It uses a peer-to-peer network of storage providers, called miners, to store and retrieve data. These miners are incentivized through the use of Filecoin tokens, which are used to pay for storage and retrieval services on the network.</p>
 
-      <p>If you're looking to onboard to Filecoin and start storing or retrieving data, you can use a tool like globe.fil to make the process quick and easy. Globe.fil is a user-friendly platform that utilizes the api.filrep.io miner API to retrieve and index a list of active storage providers on the Filecoin network.</p>
+      <p>If you are re looking to onboard to Filecoin and start storing or retrieving data, you can use a tool like globe.fil to make the process quick and easy. Globe.fil is a user-friendly platform that utilizes the api.filrep.io miner API to retrieve and index a list of active storage providers on the Filecoin network.</p>
 
       <p>To use globe.fil, simply set your search criteria, such as storage capacity and location, and then select a region from the globe or search globally. The platform will then recommend a list of storage providers based on a composite score that takes into account factors such as recent transactions, deal count, storage power, and success rate.</p>
 
@@ -43,7 +43,7 @@ function About(props) {
       <br />
       <br />
       <p>
-        <a className='normal-link' href="https://github.com/cbonoz/fevm23" target="_blank">Github</a>
+        <a rel="noreferrer" className='normal-link' href="https://github.com/cbonoz/fevm23" target="_blank">Github</a>
       </p>
       {/* TODO: add full description here for the app including motivation */}
     </div>
