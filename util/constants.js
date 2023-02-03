@@ -1,5 +1,6 @@
 export const APP_NAME = 'globe.fil'
-export const APP_DESC = 'Onboard to Filecoin with just a few clicks'
+// export const APP_DESC = 'Onboard to Filecoin with just a few clicks'
+export const APP_DESC = 'Global Filecoin storage provider discovery'
 export const HACK_DESC = 'Built for the FEVM Space Warp hackathon'
 
 export const DISCLAIMER = `

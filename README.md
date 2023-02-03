@@ -7,16 +7,15 @@
 Globe.fil
 ----
 
+Find the perfect Filecoin storage provider for your needs with globe.fil
 
-Find the perfect storage provider for your needs with globe.fil
+Fitting with the space theme - built for the FEVM 2023 Space warp hackathon and going after the overall and discovery tool categories.
 
-Built for the FEVM 2023 Space warp hackathon.
-
-Demo URL: 
+<!-- Deployed on Spheron here: https://bafybeiev6yhzoaoq3b7xfvecalkkh5ctyu3hdckb7o57adjcgzv3sig37q.ipfs.sphn.live/ -->
 
 Demo video:
 
-Create a deal: https://docs.filecoin.io/get-started/store-and-retrieve/store-data/#create-a-deal
+Creating a deal: https://docs.filecoin.io/get-started/store-and-retrieve/store-data/#create-a-deal
 
 
 ### Motivation
