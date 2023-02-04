@@ -38,6 +38,14 @@ function FilecoinGlobe({ }) {
         getMiners()
             .then((data) => {
                 const miners = data.miners.filter((miner) => miner.reachability === 'reachable')
+                    .map((miner) => {
+                        const appRank = computeRankScore(miner);
+                        return {
+                            ...miner,
+                            appRank,
+                        }
+                    })
+                    miners.sort((a, b) => b.appRank - a.appRank)
                 setMiners(miners)
 
             });
@@ -61,15 +69,10 @@ function FilecoinGlobe({ }) {
             }
             // console.log('filters', targetSize, miner.maxPieceSize, miner.minPieceSize, maxPrice, price)
             return true;
-        }).map(x => {
-            return {
-                ...x,
-                rank: computeRankScore(x)
-            }
-        })
+        });
 
         // Sort by rank descending
-        filtered?.sort((a, b) => b.rank - a.rank)
+        // filtered?.sort((a, b) => b.appRank - a.appRank)
 
         setFilteredMiners(filtered)
         if (!filtered) {
@@ -164,7 +167,6 @@ function FilecoinGlobe({ }) {
                 onLabelClick={(obj) => {
                     const region = obj.region
                     const selected = miners?.filter((miner) => miner.region === region) || []
-                    selected?.sort((a, b) => b.rank - a.rank)
                     setSelectedMiners(selected)
                 }}
                 enablePointerInteraction={true}

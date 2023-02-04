@@ -9,20 +9,24 @@ Globe.fil
 
 Find the perfect Filecoin storage provider for your needs with globe.fil
 
-Fitting with the space theme - built for the FEVM 2023 Space warp hackathon and going after the overall and discovery tool categories.
+Fitting in with the space theme - Globe.fil is built for the FEVM 2023 Space warp hackathon and going after the overall and best discovery tool categories.
 
-<!-- Deployed on Spheron here: https://bafybeiev6yhzoaoq3b7xfvecalkkh5ctyu3hdckb7o57adjcgzv3sig37q.ipfs.sphn.live/ -->
+Deployed on Spheron here: https://bafybeiev6yhzoaoq3b7xfvecalkkh5ctyu3hdckb7o57adjcgzv3sig37q.ipfs.sphn.live/
 
 Demo video:
 
 Creating a deal: https://docs.filecoin.io/get-started/store-and-retrieve/store-data/#create-a-deal
 
 
-### Motivation
+### Filecoin primer
 
 Filecoin is a decentralized storage network that allows users to store, share, and access data in a secure and decentralized way. It uses a peer-to-peer network of storage providers, called miners, to store and retrieve data. These miners are incentivized through the use of Filecoin tokens, which are used to pay for storage and retrieval services on the network.
 
-If you're looking to onboard to Filecoin and start storing or retrieving data, you can use a tool like globe.fil to make the process quick and easy. Globe.fil is a user-friendly platform that utilizes the api.filrep.io miner API to retrieve and index a list of active storage providers on the Filecoin network.
+### Motivation
+
+Visualization tools like https://plus.fil.org/miners/ and https://filscan.io/ exist, however have a lot of extra information - and they aren't necessarily focused on the business problem of storage for the common user. It's possible that, instead, I'm simply interested in figuring out the fastest (and most optimal price-wise) way to store a given volume of data on Filecoin.
+
+Globe.fil makes the process of discovering the best miners quick and easy. Globe.fil is a user-friendly platform that utilizes the api.filrep.io miner API to retrieve and index a list of active storage providers on the Filecoin network.
 
 To use globe.fil, simply set your search criteria, such as storage capacity and location, and then select a region from the globe or search globally. The platform will then recommend a list of storage providers based on a composite score that takes into account factors such as recent transactions, deal count, storage power, and success rate.
 

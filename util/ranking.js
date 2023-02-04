@@ -5,13 +5,14 @@ export function computeRankScore(payload) {
       return 0;
     }
     const power = parseInt(payload.rawPower)
-    const deals = parseInt(payload.storageDeals)
     // const size = payload.maxPieceSize;
     // const powerQuality = payload.qualityAdjPower;
-    const successRate = parseFloat(deals.successRate)
+    const successRate = parseFloat(payload.storageDeals.successRate)
     const recent30days = parseInt(payload.storageDeals.recent30days);
+    const uptime = parseFloat(payload.uptimeAverage);
     
     let rankScore = 0;
+    // return Math.random() * 100;
  
     if (!Number.isNaN(successRate)) {
       rankScore += Math.min(successRate, 1) * 30;
@@ -21,18 +22,14 @@ export function computeRankScore(payload) {
       rankScore += (Math.min(recent30days / 100, 1)) * 30;
     }
 
-    if (!Number.isNaN(power)) {
-      rankScore += Math.min(power / (10*G), 1) * 20;
-    }
-
-    if (!Number.isNaN(deals)) {
-      rankScore += Math.min(deals / 100000, 1) * 20;
+    if (uptime > 0) {
+      rankScore += Math.min(uptime*uptime, 1) * 40;
     }
 
     if (rankScore > 100) {
-    console.log('rankScore', rankScore);
+      console.log('rankScore', rankScore);
     }
   
-    return rankScore;
+    return rankScore.toFixed(1);
   }
   

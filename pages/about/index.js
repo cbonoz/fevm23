@@ -29,11 +29,13 @@ function About(props) {
       </p>
       <br />
       <pre>
-        overall = recent transactions rank * 0.3 +
-        deal rank * 0.2 +
-        power rank * 0.2 +
-        success rate * 0.3
+        overall = recent transactions rank * 0.3 + success rate * 0.3 + uptime^2 * 0.4
       </pre>
+      <p>
+        uptime squared is used to penalize miners the further they are from being 100% available.
+      </p>
+
+  
       <br/>
       <p>
 

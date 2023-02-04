@@ -1,6 +1,6 @@
 export const APP_NAME = 'globe.fil'
 // export const APP_DESC = 'Onboard to Filecoin with just a few clicks'
-export const APP_DESC = 'Global Filecoin storage provider discovery'
+export const APP_DESC = 'Optimized Filecoin storage provider discovery'
 export const HACK_DESC = 'Built for the FEVM Space Warp hackathon'
 
 export const DISCLAIMER = `
@@ -26,16 +26,16 @@ export const MINER_STEPS = [
 //   3. Select a storage provider from the list of recommended results. 
 export const STORAGE_STEPS = [
     {
-        title: 'Set your search criteria',
-        description: 'Select a region from the globe, or search globally.',
+        title: 'Determine what and how much you want to store',
+        description: 'Globe.fil helps you determine the right storage provider for your needs.',
     },
     {
-        title: 'Select a storage provider',
-        description: 'Select a storage provider from the list of recommended results.',
+        title: 'Search available storage providers',
+        description: 'Select a set using an interactive globe, or search across the entire network.',
     },
     {
         title: 'Create a deal',
-        description: 'Generate commands to create a deal with the miner',
+        description: 'Globe.fil walks you through the process to create a deal with the miner',
     },
 ]
 

@@ -6,7 +6,7 @@ import MainLayout from '../components/MainLayout'
 export default function App({ Component, pageProps }) {
   return <MainLayout>
     <Head>
-      <title>globe.fil | Global filecoin storage provider discovery</title>
+      <title>globe.fil | Optimized Filecoin storage provider discovery</title>
       <meta name="description" content={APP_DESC} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="icon" href="/favicon.ico" />
