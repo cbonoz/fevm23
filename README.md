@@ -22,6 +22,7 @@ Creating a deal: https://docs.filecoin.io/get-started/store-and-retrieve/store-d
 
 Filecoin is a decentralized storage network that allows users to store, share, and access data in a secure and decentralized way. It uses a peer-to-peer network of storage providers, called miners, to store and retrieve data. These miners are incentivized through the use of Filecoin tokens, which are used to pay for storage and retrieval services on the network.
 
+
 ### Motivation
 
 Visualization tools like https://plus.fil.org/miners/ and https://filscan.io/ exist, however have a lot of extra information - and they aren't necessarily focused on the business problem of storage for the common user. It's possible that, instead, I'm simply interested in figuring out the fastest (and most optimal price-wise) way to store a given volume of data on Filecoin.
@@ -60,6 +61,9 @@ The app should now be running on port 3000.
 
 ### About
 <img src="./img/about.png" width=800 />
+
+### Deploying on Spheron
+<img src="./img/spheron.png" width=800 />
 
 
 ### Future work
