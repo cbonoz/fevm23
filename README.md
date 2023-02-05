@@ -11,9 +11,9 @@ Find the perfect Filecoin storage provider for your needs with globe.fil
 
 Fitting in with the space theme - Globe.fil is built for the FEVM 2023 Space warp hackathon and going after the overall and best discovery tool categories.
 
-Deployed on Spheron here: https://bafybeiev6yhzoaoq3b7xfvecalkkh5ctyu3hdckb7o57adjcgzv3sig37q.ipfs.sphn.live/
+Demo deployed on Spheron here: https://fevm23-b10c91.spheron.app/
 
-Demo video:
+Demo video: https://youtu.be/3DWA_MISfNI
 
 Creating a deal: https://docs.filecoin.io/get-started/store-and-retrieve/store-data/#create-a-deal
 
@@ -27,16 +27,16 @@ Filecoin is a decentralized storage network that allows users to store, share, a
 
 Visualization tools like https://plus.fil.org/miners/ and https://filscan.io/ exist, however have a lot of extra information - and they aren't necessarily focused on the business problem of storage for the common user. It's possible that, instead, I'm simply interested in figuring out the fastest (and most optimal price-wise) way to store a given volume of data on Filecoin.
 
-Globe.fil makes the process of discovering the best miners quick and easy. Globe.fil is a user-friendly platform that utilizes the api.filrep.io miner API to retrieve and index a list of active storage providers on the Filecoin network.
-
-To use globe.fil, simply set your search criteria, such as storage capacity and location, and then select a region from the globe or search globally. The platform will then recommend a list of storage providers based on a composite score that takes into account factors such as recent transactions, deal count, storage power, and success rate.
+Globe.fil makes the process of discovering the best miners quick and easy. To use globe.fil, simply set your search criteria, such as storage capacity and location, and then select a region from the globe or search globally. The platform will then recommend a list of storage providers based on a composite score that takes into account factors such as recent transactions, deal count, storage power, and success rate.
 
 From the recommended results, you can select the storage provider that best suits your needs and securely store your data on the Filecoin network. With globe.fil, you can easily access the decentralized storage power of Filecoin with just a few clicks.
 
+### How it works
 
+Globe.fil is a react app and uses the api.filrep.io miner API to retrieve and index a list of active storage providers on the Filecoin network. A custom-built ranking algorithm is applied to the entire search result set and is used for filtering and sorting the storage providers. Online reachable storage providers are returned in the results. The app is hosted on the filecoin network as well using the spheron deployment platform. 
 
 ### How to run
-`yarn dev`
+`yarn; yarn dev`
 
 The app should now be running on port 3000.
 
@@ -72,12 +72,11 @@ The app should now be running on port 3000.
 
 2. Advanced search and filtering options: Additional search and filtering options could be added to the app, such as the ability to search for specific file types, data retention policies, or pricing models.
 
-3. Real-time monitoring and reporting: The app could include real-time monitoring and reporting features, such as the ability to track storage usage, data transfer speeds, and miner performance.
+3. Real-time monitoring and reporting: The app could include real-time monitoring and reporting features, such as tracking storage usage, data transfer speeds, and miner performance.
 
-4.  Automated data replication: The app could include automated data replication features, such as the ability to automatically copy data to multiple storage providers for added redundancy and security.
+4 Automated data replication: The app could include automated data replication features, such as automatically copying data to multiple storage providers for added redundancy and security.
 
-Support for decentralized applications: The app could potentially provide integration and support for decentralized applications built on top of the Filecoin network, such as decentralized marketplaces, data sharing platforms, or distributed compute networks.
-
+5. Support for decentralized applications: The app could provide integration and support for decentralized applications built on top of the Filecoin network, such as decentralized marketplaces, data sharing platforms, or distributed compute networks.
 
 <!--
 
